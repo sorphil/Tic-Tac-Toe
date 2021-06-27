@@ -1,0 +1,36 @@
+body, html
+{
+    min-height: 100vh;
+    min-width: 100vw;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container
+{
+    height: 900px;
+    width: 900px;
+    display: grid;
+    grid-template-columns: repeat(3, 300px);
+    grid-template-rows: repeat(3, 300px);
+    box-sizing: border-box;
+    border: 2px solid black;
+
+}
+
+.container > div
+{
+    height: 100%;
+    font-size: 40px;
+    width: 100%;
+    border-collapse: collapse;
+    box-sizing: border-box;
+    border: 2px solid black;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
