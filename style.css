@@ -34,3 +34,24 @@ body, html
     justify-content: center;
     align-items: center;
 }
+
+.titleScreen
+{
+    cursor: pointer;
+    height: 100vmin;
+    width: 100vmax;
+    font-size: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.playerCreation
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height:100vmin;
+    width: 100vmax;
+}

@@ -10,8 +10,36 @@
         <script src="./main.js"></script>
     </head>
     <body>
-        <div class = "container">
-
+        <div class = "titleScreen">TIC-TAC-TOE</div>
+        <div class = "playerCreation">
+            <div>
+                <label for "playerOneName">Player Name</label>
+                <input type = "text" class="playerOne name" id = "playerOneName">
+                <select class = "playerOne type" id = "playerOneType">
+                    <option value="Human">Human</option>
+                    <option value = "AI">AI</option>
+                </select>
+                <select class ="playerOne difficulty" id = "playerOneDifficulty">
+                    <option>Easy</option>
+                    <option>Normal</option>
+                    <option>Hard</option>
+                </select>
+            </div>
+            <div>
+                <label for "playerTwoName">Player Name</label>
+                <input type = "text" class="playerTwo name" id = "playerTwoName">
+                <select class = "playerTwo type" id = "playerTwoType">
+                    <option>Human</option>
+                    <option>AI</option>
+                </select>
+                <select class ="playerTwo difficulty" id = "playerTwoDifficulty">
+                    <option>Easy</option>
+                    <option>Normal</option>
+                    <option>Hard</option>
+                </select>
+            </div>
+            <button>Enter</button>
         </div>
+        <div class = "container"> </div>
     </body>
 </html>
