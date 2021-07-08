@@ -384,7 +384,7 @@ const runGame = (players)=>
             let _minimaxPick = ()=>{
     
                 let _minimax = (boardInstance, isMaximizing, depth)=>{
-                    if(depth>=9){return 0}
+                    if(depth>=10){return 0}
                     let result = _watchBoard(boardInstance)
                     if(result=="P2")    {return isMaximizing? -1:1}
                     else if(result=="P1") {return isMaximizing? -1:1}
@@ -465,21 +465,20 @@ const runGame = (players)=>
             // For "Easy" difficulty, perform a randomPick with a 70% chance, and a minimax pick with a 30% chance
             if(game.currentPlayer.type=="AI" && game.currentPlayer.difficulty=="Easy")
             {
-                if(chance<60) {index = _operationsAI("random")}
+                if(chance<70) {index = _operationsAI("random")}
                 else {index = _operationsAI("minimax")}
             }
     
             // For "Normal" difficulty, difficulty, perform a randomPick with a 20% chance, and a minimax pick with a 80% chance
             if(game.currentPlayer.type=="AI" && game.currentPlayer.difficulty=="Normal")
             {
-                if(chance<15)  {index = _operationsAI("random")}
+                if(chance<25)  {index = _operationsAI("random")}
                 else {index = _operationsAI("minimax")}
             }
     
             // For "Hard" difficulty, employ _minimax
             if (game.currentPlayer.type=="AI" && game.currentPlayer.difficulty=="Hard")
             { 
-                console.log("HARD")
                 {index = _operationsAI("minimax")}
             }
             tilePosition = gameBoard.board.positions[index];
