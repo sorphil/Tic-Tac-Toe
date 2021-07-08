@@ -16,11 +16,11 @@ body, html
 
 .container
 {
-    height: 900px;
-    width: 900px;
+    height: 450px;
+    width: 450px;
     display: grid;
-    grid-template-columns: repeat(3, 300px);
-    grid-template-rows: repeat(3, 300px);
+    grid-template-columns: repeat(3, 150px);
+    grid-template-rows: repeat(3, 150px);
     box-sizing: border-box;
     border: 2px solid black;
 
@@ -29,7 +29,7 @@ body, html
 .container > div
 {
     height: 100%;
-    font-size: 40px;
+    font-size: 30px;
     width: 100%;
     border-collapse: collapse;
     box-sizing: border-box;
