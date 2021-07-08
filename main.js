@@ -130,6 +130,8 @@ const runGame = (players)=>
         // Public board variable
         let board = {markers: [], positions: []};
     
+        // reset confirm value
+        let reset;
                 
         const _addTileEvents = function(){
             if(game.currentPlayer.type=="AI"){return}
@@ -171,9 +173,10 @@ const runGame = (players)=>
         _generateHTMLBoard()
 
         const resetBoard = function(){
-          let reset = confirm("Reset game?")
-          if (reset)
+          gameBoard.reset = confirm("Reset game?")
+          if (gameBoard.reset)
           {
+
             gameBoard.board.markers = []
             gameBoard.board.positions = []
             document.querySelector('.container').innerHTML = ""
@@ -193,7 +196,7 @@ const runGame = (players)=>
             document.querySelector('body').appendChild(resetButton)
         })()
 
-        return {board}
+        return {board, reset}
     })()
 
     const game = (()=>{
@@ -231,8 +234,7 @@ const runGame = (players)=>
         const _highlightTilesAI= function(moveAI){
             let i = 0
             let func = (function highlight(i, direction){
-                console.log(game.game_reset)
-                if(game.game_reset==true){console.log("ASDADA");return}
+                if(game.game_reset==true){;return}
                 if(direction=="RtL")
                 {
                     if(i==gameBoard.board.markers.length-1){highlight(i, "LtR"); return}
@@ -299,7 +301,11 @@ const runGame = (players)=>
                     game.game_reset = true
                     handlePlayerReset()
                 }
-                handleAIReset(handlePlayerReset)
+
+                if(gameBoard.reset==true)
+                {
+                    handleAIReset(handlePlayerReset)
+                }
            
             })
         }()
