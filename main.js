@@ -7,17 +7,19 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 let titleScreen = (()=>{
     let titleScreen = document.querySelector('.titleScreen')
+    titleScreen.style.display= "flex"
     titleScreen.addEventListener('click',()=>{
         document.querySelector('.titleScreen').style.display="none"
         playerCreation()
     })
-    if(titleScreen.style.display=="flex")
-    {   
-        document.addEventListener('keyup', ()=>{
+
+    document.addEventListener('keyup', (e)=>{
+        if(e.key=="Enter"&& titleScreen.style.display=="flex")
+        {
             document.querySelector('.titleScreen').style.display="none"
             playerCreation()
-        })
-    }
+        }
+    })
 })
 
 let playerCreation = (()=>{
@@ -98,7 +100,7 @@ let playerCreation = (()=>{
     if(document.querySelector('button').disabled == false)
     {
         document.addEventListener('keyup', (e)=>{
-            if(e.key=="Enter")
+            if(e.key=="Enter"&&document.querySelector('.container').style.display=="none")
             {
                 createPlayer()
             }
@@ -128,24 +130,28 @@ const runGame = (players)=>
         // Public board variable
         let board = {markers: [], positions: []};
     
-        // to generate intial value of board
-        for (let i=0; i<9; i++)
-        {
-            let prefix = (i>=3)?(Math.floor(i/3)):(0);
-            let postfix = (i>=3)?(i-3*prefix):(i);
-            board.positions.push(`${prefix}-${postfix}`);
-            board.markers.push("");
-        }
-
-        
+                
         const _addTileEvents = function(){
             if(game.currentPlayer.type=="AI"){return}
             let tilePosition = `${this.dataset.positionY}-${this.dataset.positionX}`
             game.markTiles(this, tilePosition)
         }
-        
+
+
+        // to generate intial value of board
+        const _generateBoard = function()
+        {
+            for (let i=0; i<9; i++)
+            {
+                let prefix = (i>=3)?(Math.floor(i/3)):(0);
+                let postfix = (i>=3)?(i-3*prefix):(i);
+                board.positions.push(`${prefix}-${postfix}`);
+                board.markers.push("");
+            }
+        }
+
         //create divs inside container
-        const generateBoard = function()
+        const _generateHTMLBoard = function()
         {
                 let container = document.querySelector('.container')
                 board.positions.forEach((posValue, index)=>{
@@ -159,19 +165,48 @@ const runGame = (players)=>
                     tile.addEventListener('click', _addTileEvents);
                     container.appendChild(tile);
                 })
-        }()
+        }
+
+        _generateBoard()
+        _generateHTMLBoard()
+
+        const resetBoard = function(){
+          let reset = confirm("Reset game?")
+          if (reset)
+          {
+            gameBoard.board.markers = []
+            gameBoard.board.positions = []
+            document.querySelector('.container').innerHTML = ""
+            _generateBoard()
+            _generateHTMLBoard()
+          }
+          else {return}
+        }
+        
+        //create reset button
+        const generateResetButton = (function()
+        {
+            let resetButton = document.createElement('button')
+            resetButton.className = "reset-btn"
+            resetButton.innerHTML="Reset"
+            resetButton.addEventListener('click', resetBoard)
+            document.querySelector('body').appendChild(resetButton)
+        })()
+
         return {board}
     })()
 
     const game = (()=>{
-        let game_state = null
+        let game_over = false
+        let game_reset = false
         let _players = players
         let currentPlayer = _players[0]
 
         let currentPlayerChange =  function() {
+      
             _watchBoard()
             this.currentPlayer = (this.currentPlayer===_players[0]?_players[1]:_players[0])
-            if (game.currentPlayer.type=="AI" && game.game_state!="FIN")
+            if (game.currentPlayer.type=="AI" && game.game_over!=true)
             {
                 _highlightTilesAI(_moveAI)
                 return
@@ -180,9 +215,8 @@ const runGame = (players)=>
         }
     
         const markTiles = function(tile, tilePosition){
-
             // Check if game is over, if it is, stop from changing tiles
-            if(game.game_state=="FIN"){console.log("FIN"); return true}
+            if(game.game_over==true){console.log("FIN"); return true}
     
             let index = gameBoard.board.positions.indexOf(tilePosition)
     
@@ -197,6 +231,8 @@ const runGame = (players)=>
         const _highlightTilesAI= function(moveAI){
             let i = 0
             let func = (function highlight(i, direction){
+                console.log(game.game_reset)
+                if(game.game_reset==true){console.log("ASDADA");return}
                 if(direction=="RtL")
                 {
                     if(i==gameBoard.board.markers.length-1){highlight(i, "LtR"); return}
@@ -226,23 +262,49 @@ const runGame = (players)=>
         }
     
         const _highlightTilesPlayer = function(){
-            
                 document.querySelectorAll('.tile').forEach((tile)=>{
                     tile.addEventListener('mouseenter', function(){
-                        if(tile.classList.contains("marked")||game.currentPlayer.type=="AI"){return}
+                        if(tile.classList.contains("marked")||game.currentPlayer.type=="AI"||game.game_over==true){return}
                         else
                         this.innerHTML = `<h1>${game.currentPlayer.marker}</h1>`
                     })
                     tile.addEventListener('mouseleave', function(){
-                        if(tile.classList.contains("marked")||game.currentPlayer.type=="AI"){return}
+                        if(tile.classList.contains("marked")||game.currentPlayer.type=="AI"||game.game_over==true){return}
                         else
                         this.innerHTML = ""
                     })
                 })
+        }
+        _highlightTilesPlayer()
+
+        const handleReset = function()
+        {
+            document.querySelector('.reset-btn').addEventListener('click', ()=>{
+                const handlePlayerReset = ()=>{
+                    game.game_over = false;
+                    game.currentPlayer = players[0]
+                    _highlightTilesPlayer()
+                    setTimeout(()=>
+                    {
+                        game.game_reset = false;
+                        if(game.currentPlayer.type=="AI")
+                        {
+                            game.currentPlayer=players[1]
+                            game.currentPlayerChange()
+                        }
+                    }, 10)
+                  
+                }
+                const handleAIReset = (handlePlayerReset)=>{
+                    game.game_reset = true
+                    handlePlayerReset()
+                }
+                handleAIReset(handlePlayerReset)
+           
+            })
         }()
         
         const _watchBoard = (boardInstance)=>{
-    
             let _watchWinner = (playerOneTiles, playerTwoTiles, boardInstance) =>{
                 const _checkWinner = (arr, direction)=>{
                     if(direction=="horizontal")
@@ -272,8 +334,8 @@ const runGame = (players)=>
                     if(!boardInstance&&game.currentPlayer==_players[0])
                     {
                         alert(`Player One is the winner`)
-                        game.game_state = "FIN"
-                        location.reload()
+                        game.game_over = true
+                        // location.reload()
                     }
                     return  "P1"
                 }
@@ -282,8 +344,8 @@ const runGame = (players)=>
                     if(!boardInstance&&game.currentPlayer==_players[1])
                     {
                         alert(`Player Two is the winner`)
-                        game.game_state = "FIN"
-                        location.reload()
+                        game.game_over = true
+                        // location.reload()
                     }
                     return "P2"
                 }
@@ -291,8 +353,8 @@ const runGame = (players)=>
                 {   if(!boardInstance)
                     {
                         alert(`TIE`)
-                        game.game_state = "FIN"
-                        location.reload()
+                        game.game_over = true
+                        // location.reload()
                     }
                     return "Tie"
                 }
@@ -321,7 +383,8 @@ const runGame = (players)=>
         const _operationsAI = (AI_Algo)=> {
             let _minimaxPick = ()=>{
     
-                let _minimax = (boardInstance, isMaximizing)=>{
+                let _minimax = (boardInstance, isMaximizing, depth)=>{
+                    if(depth>=9){return 0}
                     let result = _watchBoard(boardInstance)
                     if(result=="P2")    {return isMaximizing? -1:1}
                     else if(result=="P1") {return isMaximizing? -1:1}
@@ -336,7 +399,7 @@ const runGame = (players)=>
                             if(boardInstance[i]=="")
                             {
                                 boardInstance[i] =  game.currentPlayer.marker
-                                let score = _minimax(boardInstance, false)
+                                let score = _minimax(boardInstance, false, depth++)
                                 boardInstance[i]=""
                                 bestScore = Math.max(score, bestScore)
                             }
@@ -351,7 +414,7 @@ const runGame = (players)=>
                             if(boardInstance[i]=="")
                             {  
                                 boardInstance[i] = game.currentPlayer==_players[0]?_players[1].marker:_players[0].marker
-                                let score = _minimax(boardInstance, true)
+                                let score = _minimax(boardInstance, true,depth++)
                                 boardInstance[i]=""
                                 bestScore = Math.min(score, bestScore)
                                 
@@ -368,7 +431,7 @@ const runGame = (players)=>
                     if(gameBoard.board.markers[i]=="")
                     {
                         gameBoard.board.markers[i] = game.currentPlayer.marker
-                        let score = _minimax(gameBoard.board.markers, false,)
+                        let score = _minimax(gameBoard.board.markers, false, 0)
                         gameBoard.board.markers[i]=""
                         if(score>bestScore)
                         {
@@ -382,7 +445,7 @@ const runGame = (players)=>
         
             let _randomPick = ()=>{
                 let move = Math.floor(Math.random()*(9));
-                while(gameBoard.board.markers[move]!=""&&game.game_state!="FIN")
+                while(gameBoard.board.markers[move]!=""&&game.game_over!=true)
                 {
                     move = Math.floor(Math.random()*(9));
                 }
@@ -416,7 +479,7 @@ const runGame = (players)=>
             // For "Hard" difficulty, employ _minimax
             if (game.currentPlayer.type=="AI" && game.currentPlayer.difficulty=="Hard")
             { 
-                
+                console.log("HARD")
                 {index = _operationsAI("minimax")}
             }
             tilePosition = gameBoard.board.positions[index];
