@@ -12,34 +12,38 @@
     <body>
         <div class = "titleScreen">TIC-TAC-TOE</div>
         <div class = "playerCreation">
-            <div>
-                <label for "playerOneName">Player Name</label>
-                <input type = "text" class="playerOne name" id = "playerOneName">
-                <select class = "playerOne type" id = "playerOneType">
-                    <option value="Human">Human</option>
-                    <option value = "AI">AI</option>
-                </select>
-                <select class ="playerOne difficulty" id = "playerOneDifficulty">
-                    <option>Easy</option>
-                    <option>Normal</option>
-                    <option>Hard</option>
-                </select>
-            </div>
-            <div>
-                <label for "playerTwoName">Player Name</label>
-                <input type = "text" class="playerTwo name" id = "playerTwoName">
-                <select class = "playerTwo type" id = "playerTwoType">
-                    <option>Human</option>
-                    <option>AI</option>
-                </select>
-                <select class ="playerTwo difficulty" id = "playerTwoDifficulty">
-                    <option>Easy</option>
-                    <option>Normal</option>
-                    <option>Hard</option>
-                </select>
+            <div class = "fields">
+                <div style="display:flex;justify-content:center;flex-wrap;flex-wrap: wrap;">
+                    <label for "playerOneName">Player Name</label>
+                    <input type = "text" class="playerOne name" id = "playerOneName">
+                    <select class = "playerOne type" id = "playerOneType">
+                        <option value="Human">Human</option>
+                        <option value = "AI">AI</option>
+                    </select>
+                    <select class ="playerOne difficulty" id = "playerOneDifficulty">
+                        <option>Easy</option>
+                        <option>Normal</option>
+                        <option>Hard</option>
+                    </select>
+                </div>
+                <div style="display:flex;justify-content:center;flex-wrap;flex-wrap: wrap;">
+                    <label for "playerTwoName">Player Name</label>
+                    <input type = "text" class="playerTwo name" id = "playerTwoName">
+                    <select class = "playerTwo type" id = "playerTwoType">
+                        <option>Human</option>
+                        <option>AI</option>
+                    </select>
+                    <select class ="playerTwo difficulty" id = "playerTwoDifficulty">
+                        <option>Easy</option>
+                        <option>Normal</option>
+                        <option>Hard</option>
+                    </select>
+                </div>
             </div>
             <button>Enter</button>
         </div>
-        <div class = "container"> </div>
+        <div class = "container"> 
+
+        </div>
     </body>
 </html>
