@@ -10,12 +10,15 @@
         <script src="./main.js"></script>
     </head>
     <body>
-        <div class = "titleScreen">TIC-TAC-TOE</div>
+        <div class = "titleScreen">
+            <div class = "head">TIC-TAC-TOE</div>
+            <div class = "subhead">Press Enter or Click the screen to continue</div>
+        </div>
         <div class = "playerCreation">
             <div class = "fields">
                 <div style="display:flex;justify-content:center;flex-wrap;flex-wrap: wrap;">
-                    <label for "playerOneName">Player Name</label>
-                    <input type = "text" class="playerOne name" id = "playerOneName">
+                    <!-- <label for "playerOneName">Player Name</label> -->
+                    <input type = "text" class="playerOne name" id = "playerOneName" placeholder="Player 1 Name">
                     <select class = "playerOne type" id = "playerOneType">
                         <option value="Human">Human</option>
                         <option value = "AI">AI</option>
@@ -27,8 +30,8 @@
                     </select>
                 </div>
                 <div style="display:flex;justify-content:center;flex-wrap;flex-wrap: wrap;">
-                    <label for "playerTwoName">Player Name</label>
-                    <input type = "text" class="playerTwo name" id = "playerTwoName">
+                    <!-- <label for "playerTwoName">Player Name</label> -->
+                    <input type = "text" class="playerTwo name" id = "playerTwoName" placeholder="Player 2 Name">
                     <select class = "playerTwo type" id = "playerTwoType">
                         <option>Human</option>
                         <option>AI</option>

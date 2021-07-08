@@ -42,14 +42,17 @@ body, html
     cursor: pointer;
     height: 100vmin;
     width: 100vmax;
-    font-size: 200px;
+    display: flex;
+    flex-direction: column;
 }
+.titleScreen .head {    font-size: 170px;}
+.titleScreen .subhead {font-size: 70px;}
 
 .playerCreation
 {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     height:100vmin;
     width: 100vmax;
@@ -62,4 +65,10 @@ body, html
     align-items: center;
     width: 100vmax;
     height: 90vmin;
+}
+
+input, button
+{
+    width:200px;
+    height:40px;
 }
