@@ -1,4 +1,4 @@
-body, html, .titleScreen, .container > div
+body, html, .titleScreen, .boardContainer > div
 {
     display: flex;
     justify-content: center;
@@ -14,7 +14,7 @@ body, html
     margin: 0;
 }
 
-.container
+.boardContainer
 {
     height: 450px;
     width: 450px;
@@ -26,7 +26,7 @@ body, html
 
 }
 
-.container > div
+.boardContainer > div
 {
     height: 100%;
     font-size: 30px;

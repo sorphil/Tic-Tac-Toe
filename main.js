@@ -1,7 +1,20 @@
 document.addEventListener('DOMContentLoaded', ()=>{
-    document.querySelector('.container').style.display="none"
+    document.querySelector('.gameContainer').style.display="none"
     document.querySelector('.playerCreation').style.display="none"
-    titleScreen()
+
+    window.onload = function()
+    {
+        var playerCreationReload = sessionStorage.getItem("playerCreationReload");
+        if (playerCreationReload) {
+            sessionStorage.removeItem("playerCreationReload");
+            document.querySelector('.titleScreen').style.display= "none"
+            playerCreation();
+        }
+        else
+        {
+            titleScreen()
+        }
+    }
 })
 
 
@@ -23,29 +36,19 @@ let titleScreen = (()=>{
 })
 
 let playerCreation = (()=>{
+    document.querySelector('.playerCreation').style.display="flex"
+    playerOne={}
+    playerTwo={}
     const toggleDifficultyInput = (input)=>{
         if(input.value=="AI")
         {
-            if(input.id=="playerOneType")
-            {
-                document.querySelector('#playerOneDifficulty').style.display="inline"
-            }
-            else
-            {
-                document.querySelector('#playerTwoDifficulty').style.display="inline"
-            }
-
+            if(input.id=="playerOneType") {document.querySelector('#playerOneDifficulty').style.display="inline"}
+            else {document.querySelector('#playerTwoDifficulty').style.display="inline"}
         }
         else
         {
-            if(input.id=="playerOneType")
-            {
-                document.querySelector('#playerOneDifficulty').style.display="none"
-            }
-            else
-            {
-                document.querySelector('#playerTwoDifficulty').style.display="none"
-            }
+            if(input.id=="playerOneType"){document.querySelector('#playerOneDifficulty').style.display="none"}
+            else{document.querySelector('#playerTwoDifficulty').style.display="none"}
         }
     }
     const checkNameInput = ()=>{
@@ -75,10 +78,6 @@ let playerCreation = (()=>{
         runGame([playerOne, playerTwo])
     }
 
-    document.querySelector('.playerCreation').style.display="flex"
-    playerOne={}
-    playerTwo={}
-
 
     document.querySelectorAll('.name').forEach((input)=>{
         checkNameInput()
@@ -100,7 +99,7 @@ let playerCreation = (()=>{
     if(document.querySelector('button').disabled == false)
     {
         document.addEventListener('keyup', (e)=>{
-            if(e.key=="Enter"&&document.querySelector('.container').style.display=="none")
+            if(e.key=="Enter"&&document.querySelector('.gameContainer').style.display=="none")
             {
                 createPlayer()
             }
@@ -108,36 +107,61 @@ let playerCreation = (()=>{
     }
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const runGame = (players)=>
 {
-    document.querySelector('.container').style.display="grid"
+    const generateHTML = (()=>{
+        let gameContainer =document.querySelector('.gameContainer')
+        gameContainer.innerHTML = `<div class = "score"></div>
+                                    <div class = "turn"></div>
+                                    <div class = "boardContainer"></div>
+                                    <button class = "reset-btn">Reset</button>
+                                    <button class = "back-btn">Back</button>
+        `                           
+        gameContainer.style.display= "block"
+    })()
+
     const gameBoard = (()=>{
         // Public board variable
         let board = {markers: [], positions: []};
     
         // reset confirm value
         let reset;
-                
-        const _addTileEvents = function(){
+
+        const _resetBoard = ()=> {
+            gameBoard.reset = confirm("Reset game?")
+            if (gameBoard.reset)
+            {
+                gameBoard.board.markers = []
+                gameBoard.board.positions = []
+                document.querySelector('.boardContainer').innerHTML = ""
+                _generateBoard()
+                _generateHTMLBoard()
+            }
+            else {return}
+        }
+  
+        const _goBack = ()=>{
+            let back = confirm("Go back to character select?")
+            if(back==true)
+            {
+                sessionStorage.setItem("playerCreationReload", "true");
+                document.location.reload();
+            }
+            else {return}
+        }
+        const _addTileEventstListeners = function(){
             if(game.currentPlayer.type=="AI"){return}
             let tilePosition = `${this.dataset.positionY}-${this.dataset.positionX}`
             game.markTiles(this, tilePosition)
         }
+
+        const _addButtonEventListeners = function()
+        {
+            let resetButton = document.querySelector('.reset-btn')
+            let backButton = document.querySelector('.back-btn')
+            resetButton.addEventListener('click', _resetBoard)
+            backButton.addEventListener('click', _goBack )
+        }()
 
 
         // to generate intial value of board
@@ -155,71 +179,70 @@ const runGame = (players)=>
         //create divs inside container
         const _generateHTMLBoard = function()
         {
-                let container = document.querySelector('.container')
-                board.positions.forEach((posValue, index)=>{
-                    const tile = document.createElement('div');
-                    tile.className = "tile";
-                    if(board.markers[index]!="")
-                    {
-                        tile.innerHTML = `<div class = "marker">${board.markers[index]}</div>`
-                    }
-                    [tile.dataset.positionY, tile.dataset.positionX] = [posValue.split("-")[0], posValue.split("-")[1]];
-                    tile.addEventListener('click', _addTileEvents);
-                    container.appendChild(tile);
-                })
+            let boardContainer = document.querySelector('.boardContainer')
+            board.positions.forEach((posValue, index)=>{
+                const tile = document.createElement('div');
+                tile.className = "tile";
+                if(board.markers[index]!="")
+                {
+                    tile.innerHTML = `<div class = "marker">${board.markers[index]}</div>`
+                }
+                [tile.dataset.positionY, tile.dataset.positionX] = [posValue.split("-")[0], posValue.split("-")[1]];
+                tile.addEventListener('click', _addTileEventstListeners);
+                boardContainer.appendChild(tile);
+            })
+            // boardContainer.display
         }
 
         _generateBoard()
         _generateHTMLBoard()
 
-        const resetBoard = function(){
-          gameBoard.reset = confirm("Reset game?")
-          if (gameBoard.reset)
-          {
-
-            gameBoard.board.markers = []
-            gameBoard.board.positions = []
-            document.querySelector('.container').innerHTML = ""
-            _generateBoard()
-            _generateHTMLBoard()
-          }
-          else {return}
-        }
-        
-        //create reset button
-        const generateResetButton = (function()
-        {
-            let resetButton = document.createElement('button')
-            resetButton.className = "reset-btn"
-            resetButton.innerHTML="Reset"
-            resetButton.addEventListener('click', resetBoard)
-            document.querySelector('body').appendChild(resetButton)
-        })()
-
         return {board, reset}
     })()
 
     const game = (()=>{
-        let game_over = false
-        let game_reset = false
+        let _over = false
+        let _reset = false
         let _players = players
-        let currentPlayer = _players[0]
 
-        let currentPlayerChange =  function() {
-      
+        let currentPlayer = _players[0]
+        let score = {playerOne:0, playerTwo:0, tie:0}
+        
+        let _displayCurrentTurn = function(initial)
+        {
+            let turnDiv =  document.querySelector('.turn')
+            if(initial) {turnDiv.innerHTML = `${_players[0].name}'s Turn`}
+            else {turnDiv.innerHTML = `${game.currentPlayer.name}'s Turn`}
+        }
+        let _displayScore = function(initial)
+        {
+            let scoreDiv =  document.querySelector('.score')
+            if(initial) {scoreDiv.innerHTML = `${_players[0].name}:${score.playerOne}, ${_players[1].name}:${score.playerTwo}, Tie:${score.tie}`}
+            else {scoreDiv.innerHTML = `${_players[0].name}:${game.score.playerOne}, ${_players[1].name}:${game.score.playerTwo}, Tie:${game.score.tie}`}
+        }
+       
+        //Display turn and score at the first instance of the game
+        _displayCurrentTurn(true)
+        _displayScore(true)
+
+        let currentPlayerChange =  function() 
+        {
             _watchBoard()
             this.currentPlayer = (this.currentPlayer===_players[0]?_players[1]:_players[0])
-            if (game.currentPlayer.type=="AI" && game.game_over!=true)
+            if(_over==false)
             {
-                _highlightTilesAI(_moveAI)
-                return
+                _displayCurrentTurn()
+                if (game.currentPlayer.type=="AI")
+                {
+                    _highlightTilesAI(_moveAI)
+                    return
+                }
             }
-            
         }
     
         const markTiles = function(tile, tilePosition){
             // Check if game is over, if it is, stop from changing tiles
-            if(game.game_over==true){console.log("FIN"); return true}
+            if(_over==true){console.log("FIN"); return true}
     
             let index = gameBoard.board.positions.indexOf(tilePosition)
     
@@ -234,13 +257,15 @@ const runGame = (players)=>
         const _highlightTilesAI= function(moveAI){
             let i = 0
             let func = (function highlight(i, direction){
-                if(game.game_reset==true){;return}
+                if(_reset==true){;return}
+                //RtL - Right to Left
+                //LtR - Left to Right
                 if(direction=="RtL")
                 {
                     if(i==gameBoard.board.markers.length-1){highlight(i, "LtR"); return}
                     let tile = document.querySelectorAll('.tile')[i];
                     if(!tile.classList.contains('marked'))
-                    {tile.innerHTML = `<h1>${game.currentPlayer.marker}</h1>`}
+                    {tile.innerHTML = `<h1 style="opacity:40%;">${game.currentPlayer.marker}</h1>`}
                     i++
                     setTimeout(()=>highlight(i, direction), 40)
                     setTimeout(()=>{if(!tile.classList.contains('marked')){tile.innerHTML=""}}, 40)
@@ -254,7 +279,7 @@ const runGame = (players)=>
                     }
                     let tile = document.querySelectorAll('.tile')[i];
                     if(!tile.classList.contains('marked'))
-                    {tile.innerHTML = `<h1>${game.currentPlayer.marker}</h1>`}
+                    {tile.innerHTML = `<h1 style="opacity:40%;">${game.currentPlayer.marker}</h1>`}
         
                     i--
                     setTimeout(()=>highlight(i, direction), 40)
@@ -266,12 +291,12 @@ const runGame = (players)=>
         const _highlightTilesPlayer = function(){
                 document.querySelectorAll('.tile').forEach((tile)=>{
                     tile.addEventListener('mouseenter', function(){
-                        if(tile.classList.contains("marked")||game.currentPlayer.type=="AI"||game.game_over==true){return}
+                        if(tile.classList.contains("marked")||game.currentPlayer.type=="AI"||_over==true){return}
                         else
-                        this.innerHTML = `<h1>${game.currentPlayer.marker}</h1>`
+                        this.innerHTML = `<h1 style="opacity:40%;">${game.currentPlayer.marker}</h1>`
                     })
                     tile.addEventListener('mouseleave', function(){
-                        if(tile.classList.contains("marked")||game.currentPlayer.type=="AI"||game.game_over==true){return}
+                        if(tile.classList.contains("marked")||game.currentPlayer.type=="AI"||_over==true){return}
                         else
                         this.innerHTML = ""
                     })
@@ -279,32 +304,35 @@ const runGame = (players)=>
         }
         _highlightTilesPlayer()
 
-        const handleReset = function()
+        const _handleReset = function()
         {
             document.querySelector('.reset-btn').addEventListener('click', ()=>{
-                const handlePlayerReset = ()=>{
-                    game.game_over = false;
+                const _handlePlayerReset = ()=>{
                     game.currentPlayer = players[0]
                     _highlightTilesPlayer()
                     setTimeout(()=>
                     {
-                        game.game_reset = false;
+                        _reset = false;
                         if(game.currentPlayer.type=="AI")
                         {
                             game.currentPlayer=players[1]
                             game.currentPlayerChange()
+                            return
                         }
-                    }, 10)
+                    }, 100)
+                    _displayCurrentTurn(true)
+                    _displayScore(true)
                   
                 }
-                const handleAIReset = (handlePlayerReset)=>{
-                    game.game_reset = true
-                    handlePlayerReset()
+                const _handleAIReset = (_handlePlayerReset)=>{
+                    _reset = true
+                    _over = false;
+                    _handlePlayerReset()
                 }
 
                 if(gameBoard.reset==true)
-                {
-                    handleAIReset(handlePlayerReset)
+                {  
+                    _handleAIReset(_handlePlayerReset)
                 }
            
             })
@@ -339,9 +367,10 @@ const runGame = (players)=>
                 {
                     if(!boardInstance&&game.currentPlayer==_players[0])
                     {
-                        alert(`Player One is the winner`)
-                        game.game_over = true
-                        // location.reload()
+                        _over = true
+                        game.score.playerOne+=1
+                        document.querySelector('.turn').innerHTML = `${_players[0].name} Won`
+                        _displayScore()
                     }
                     return  "P1"
                 }
@@ -349,22 +378,23 @@ const runGame = (players)=>
                 {
                     if(!boardInstance&&game.currentPlayer==_players[1])
                     {
-                        alert(`Player Two is the winner`)
-                        game.game_over = true
-                        // location.reload()
+                        _over = true
+                        game.score.playerTwo+=1
+                        document.querySelector('.turn').innerHTML = `${_players[1].name} Won`
+                        _displayScore()
                     }
                     return "P2"
                 }
                 else if(gameBoard.board.markers.every((tile)=>tile!=""))
                 {   if(!boardInstance)
                     {
-                        alert(`TIE`)
-                        game.game_over = true
-                        // location.reload()
+                        _over = true
+                        game.score.tie+=1
+                        document.querySelector('.turn').innerHTML = `Tie`
+                        _displayScore()
                     }
                     return "Tie"
                 }
-                // else if(gameBoard.board.markers.every((tile)=>tile!="")){game.game_state="FIN"; alert("TIE");}
             }
     
             let playerOneTiles = []
@@ -451,7 +481,7 @@ const runGame = (players)=>
         
             let _randomPick = ()=>{
                 let move = Math.floor(Math.random()*(9));
-                while(gameBoard.board.markers[move]!=""&&game.game_over!=true)
+                while(gameBoard.board.markers[move]!=""&&_over==false)
                 {
                     move = Math.floor(Math.random()*(9));
                 }
@@ -492,7 +522,7 @@ const runGame = (players)=>
             game.markTiles(tile, tilePosition)
         }
 
-        return {currentPlayer, currentPlayerChange, markTiles}
+        return {currentPlayer, currentPlayerChange, markTiles, score}
     })()
     
     //if the first player is AI, run the game by setting current player to the 2nd one, and running the change function
@@ -504,3 +534,4 @@ const runGame = (players)=>
 }
 
 
+    
