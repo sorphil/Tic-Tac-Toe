@@ -8,10 +8,13 @@ body, html, .titleScreen, .boardContainer > div
 
 body, html
 {
-    min-height: 100vh;
-    min-width: 100vw;
+    min-height: 100vmin;
+    min-width: 100vmax;
     padding: 0;
     margin: 0;
+    display:flex;
+    flex-direction:column;
+    align-items:center
 }
 
 .boardContainer
@@ -44,31 +47,120 @@ body, html
     width: 100vmax;
     display: flex;
     flex-direction: column;
+    /* background-color: antiquewhite; */
+    font-size: 14vmin;
+
 }
-.titleScreen .head {    font-size: 170px;}
-.titleScreen .subhead {font-size: 70px;}
+.shrinkUp
+{
+    animation-name: shrinkUp;
+    animation-duration: 1s;
+    
+}
+
+@keyframes shrinkUp {
+    from
+    {
+        font-size: 14vmin;
+        height:100vmin;
+    }
+    to
+    {
+        height: 20vmin;
+        font-size: 9vmin;
+    }
+}
+
+.subhead 
+{
+    font-size: 5vmin; 
+    transition: visibility 0.2s, opacity 0.2s linear;
+}
+.fade-out
+{
+    visibility: hidden;
+    opacity: 0;
+}
+
+
 
 .playerCreation
 {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    /* justify-content: center; */
     align-items: center;
-    height:100vmin;
+    height:80vmin;
     width: 100vmax;
+    transition: visibility 1s, opacity 1s linear;
 }
+
 
 .playerCreation .fields
 {
     display: flex;
-    justify-content: space-evenly;
+    background-color: aliceblue;  
+    justify-content: center;
     align-items: center;
     width: 100vmax;
-    height: 90vmin;
+    height: 65vmin;
+}
+.playerBlock
+{
+    border: 0.4vmin black solid;
+}
+.playerCreation .enterButton 
+{
+    width: 100vmax;
+    height: 15vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-input, button
+input, select
 {
-    width:200px;
-    height:40px;
+    width:12vmax;
+    height:6vmin;
+    padding: 0;
+    margin: 0;
+    border: 0.3vmin grey solid;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 2vmin; 
+    
+}
+input:focus, select:focus {outline: none;}
+
+button
+{
+    width:12vmax;
+    box-sizing: border-box;
+    height:7vmin;
+    font-size: 2.5vmin;
+}
+
+#playerOneFields, #playerTwoFields {
+  
+    height:100%;
+    width:50vmax;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.playerIcon
+{
+    border: 0.5vmin black solid;
+    border-radius: 50%;
+    padding:2vmin;
+    margin:4vmin;
+}
+.playerIcon img
+{
+    height:10vmin;
+    box-sizing: border-box;
+    width:auto;
 }
