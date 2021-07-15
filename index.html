@@ -9,14 +9,20 @@
         <link rel="stylesheet" href="./style.css">
         <script src="./main.js"></script>
     </head>
-    <body>
-        <div class = "titleScreen">
+    <body> 
+        
+        <div class = "titleScreen" >
             <div class = "head">TIC-TAC-TOE</div>
             <div class = "subhead">Press Enter or Click the screen to continue</div>
         </div>
-        <div class = "playerCreation">
+        <div class = "playerCreation" style="display: none;">
             <div class = "fields">
-                <div style="display:flex;justify-content:center;flex-wrap: wrap;">
+                <div class = "playerFields" id ="playerOneFields">
+                    <div class ="playerIcon">
+                        <img src="./HumanIcon.png"  class = "humanIcon" id = "playerOneHumanIcon">
+                        <img src="./RobotIcon.png"  class = "robotIcon" id = "playerOneRobotIcon">
+                    </div>
+
                     <input type = "text" class="playerOne name" id = "playerOneName" placeholder="Player 1 Name">
                     <select class = "playerOne type" id = "playerOneType">
                         <option value="Human">Human</option>
@@ -28,7 +34,12 @@
                         <option>Hard</option>
                     </select>
                 </div>
-                <div style="display:flex;justify-content:center;flex-wrap: wrap;">
+
+                <div class = "playerFields" id ="playerTwoFields">
+                    <div class ="playerIcon">
+                        <img src="./HumanIcon.png" class = "humanIcon"  id = "playerTwoHumanIcon">
+                        <img src="./RobotIcon.png"  class = "robotIcon" id = "playerTwoRobotIcon">
+                    </div>
                     <input type = "text" class="playerTwo name" id = "playerTwoName" placeholder="Player 2 Name">
                     <select class = "playerTwo type" id = "playerTwoType">
                         <option>Human</option>
@@ -41,9 +52,20 @@
                     </select>
                 </div>
             </div>
-            <button>Enter</button>
+            <div class = "enterButton">
+                <button>Enter</button>
+            </div>
+
         </div>
-        <div class = "gameContainer"></div>
+        <div class = "gameContainer">
+            <div class = "score"></div>
+            <div class = "turn"></div>
+            <div class = "boardContainer">
+
+            </div>
+            <button class = "reset-btn">Reset</button>
+            <button class = "back-btn">Back</button>
+        </div>
 
     </body>
 </html>

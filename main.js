@@ -1,14 +1,13 @@
 document.addEventListener('DOMContentLoaded', ()=>{
     document.querySelector('.gameContainer').style.display="none"
     document.querySelector('.playerCreation').style.display="none"
-
+    document.querySelector('.titleScreen').style.display= "none"
     window.onload = function()
     {
         var playerCreationReload = sessionStorage.getItem("playerCreationReload");
         if (playerCreationReload) {
             sessionStorage.removeItem("playerCreationReload");
-            document.querySelector('.titleScreen').style.display= "none"
-            playerCreation();
+            playerCreation(true)
         }
         else
         {
@@ -19,13 +18,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 
 let titleScreen = (()=>{
-    let titleScreen = document.querySelector('.titleScreen')
-    titleScreen.style.display= "flex"
-    titleScreen.addEventListener('click',()=>{
-        document.querySelector('.titleScreen').style.display="none"
-        playerCreation()
-    })
 
+    const titleScreen = document.querySelector('.titleScreen')
+    titleScreen.style.display = "flex"
+    titleScreen.addEventListener('click', ()=>{playerCreation()})
     document.addEventListener('keyup', (e)=>{
         if(e.key=="Enter"&& titleScreen.style.display=="flex")
         {
@@ -35,20 +31,63 @@ let titleScreen = (()=>{
     })
 })
 
-let playerCreation = (()=>{
-    document.querySelector('.playerCreation').style.display="flex"
+
+
+let playerCreation = (reload)=>{
+    const titleScreen = document.querySelector('.titleScreen')
+    const subhead = document.querySelector('.subhead') 
+    const playerCreation = document.querySelector('.playerCreation')
+
+    titleScreen.style.display = "flex"
+    subhead.classList.add('fade-out')
+    subhead.addEventListener('transitionend', ()=>{
+        subhead.style.display = "none"
+        playerCreation.style.display = "flex"
+        titleScreen.classList.add('shrinkUp')
+        titleScreen.addEventListener('animationend', ()=>{
+            titleScreen.style.cssText="   height: 20vh;font-size: 9vmin;cursor: default;"
+        })
+    })
+    if(reload)
+        {
+            subhead.style.display = "none"
+            titleScreen.style.display = "flex"
+            playerCreation.style.display = "flex"
+            titleScreen.style.cssText="   height: 20vh;font-size: 9vmin;cursor: default;"
+        }
+
+
     playerOne={}
     playerTwo={}
     const toggleDifficultyInput = (input)=>{
         if(input.value=="AI")
         {
-            if(input.id=="playerOneType") {document.querySelector('#playerOneDifficulty').style.display="inline"}
-            else {document.querySelector('#playerTwoDifficulty').style.display="inline"}
+            if(input.id=="playerOneType") {
+                document.querySelector('#playerOneHumanIcon').style.display ="none";
+                document.querySelector('#playerOneRobotIcon').style.display ="block";
+                document.querySelector('#playerOneDifficulty').style.opacity = "100%";
+            }
+            else 
+            {
+                document.querySelector('#playerTwoHumanIcon').style.display ="none";
+                document.querySelector('#playerTwoRobotIcon').style.display ="block";
+                document.querySelector('#playerTwoDifficulty').style.opacity = "100%";
+            }
         }
         else
         {
-            if(input.id=="playerOneType"){document.querySelector('#playerOneDifficulty').style.display="none"}
-            else{document.querySelector('#playerTwoDifficulty').style.display="none"}
+            if(input.id=="playerOneType")
+            {
+                document.querySelector('#playerOneHumanIcon').style.display ="block";
+                document.querySelector('#playerOneRobotIcon').style.display ="none";
+                document.querySelector('#playerOneDifficulty').style.opacity = "0%";
+            }
+            else
+            {
+                document.querySelector('#playerTwoHumanIcon').style.display ="block";
+                document.querySelector('#playerTwoRobotIcon').style.display ="none";
+                document.querySelector('#playerTwoDifficulty').style.opacity = "0%";
+            }
         }
     }
     const checkNameInput = ()=>{
@@ -105,20 +144,18 @@ let playerCreation = (()=>{
             }
         })
     }
-})
+}
 
 const runGame = (players)=>
 {
-    const generateHTML = (()=>{
-        let gameContainer =document.querySelector('.gameContainer')
-        gameContainer.innerHTML = `<div class = "score"></div>
-                                    <div class = "turn"></div>
-                                    <div class = "boardContainer"></div>
-                                    <button class = "reset-btn">Reset</button>
-                                    <button class = "back-btn">Back</button>
-        `                           
-        gameContainer.style.display= "block"
-    })()
+    document.querySelector('.titleScreen').style.display ="none"
+    document.querySelector('.gameContainer').style.display = "block"
+    // const generateHTML = (()=>{
+    //     let gameContainer =
+    //     gameContainer.innerHTML = `
+    //     `                           
+    //     gameContainer.style.display= "block"
+    // })()
 
     const gameBoard = (()=>{
         // Public board variable
