@@ -8,8 +8,8 @@ body, html, .titleScreen, .boardContainer > div
 
 body, html
 {
-    min-height: 100vmin;
-    min-width: 100vmax;
+    min-height: 100vh;
+    min-width: 100vw;
     padding: 0;
     margin: 0;
     display:flex;
@@ -43,8 +43,8 @@ body, html
 .titleScreen
 {
     cursor: pointer;
-    height: 100vmin;
-    width: 100vmax;
+    height: 100vh;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     /* background-color: antiquewhite; */
@@ -62,11 +62,11 @@ body, html
     from
     {
         font-size: 14vmin;
-        height:100vmin;
+        height:100vh;
     }
     to
     {
-        height: 20vmin;
+        height: 20vh;
         font-size: 9vmin;
     }
 }
@@ -90,8 +90,8 @@ body, html
     flex-direction: column;
     /* justify-content: center; */
     align-items: center;
-    height:80vmin;
-    width: 100vmax;
+    height:80vh;
+    width: 100vw;
     transition: visibility 1s, opacity 1s linear;
 }
 
@@ -99,20 +99,16 @@ body, html
 .playerCreation .fields
 {
     display: flex;
-    background-color: aliceblue;  
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    width: 100vmax;
-    height: 65vmin;
+    width: 100vw;
+    height: 65vh;
 }
-.playerBlock
-{
-    border: 0.4vmin black solid;
-}
+
 .playerCreation .enterButton 
 {
-    width: 100vmax;
-    height: 15vmin;
+    width: 100vw;
+    height: 15vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -143,12 +139,14 @@ button
 #playerOneFields, #playerTwoFields {
   
     height:100%;
-    width:50vmax;
+    width:30vw;
+    background-color: aliceblue;  
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    border: 0.4vmin black solid;
 }
 
 .playerIcon

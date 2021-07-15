@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', ()=>{
+    if(screen.availHeight > screen.availWidth){
+        alert("Please use Landscape!");
+    }
     document.querySelector('.gameContainer').style.display="none"
     document.querySelector('.playerCreation').style.display="none"
     document.querySelector('.titleScreen').style.display= "none"
