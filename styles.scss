@@ -41,8 +41,8 @@
 }
 @keyframes shrinkUp
 {
-    from {height:100vmin;}
-    to{height:20vmin;}
+    from {height:100vh;}
+    to{height:20vh;}
 }
 
 //Colors
@@ -75,7 +75,7 @@ $color-light-base:#949425;
 html
 {
     // to make font base 10
-    font-size: 0.5vmax;
+    font-size: 0.5vw;
     font-family: Early Gameboy;
 
 
@@ -84,15 +84,15 @@ html
         overflow-y: hidden;
         padding: 0;
         margin: 0;
-        min-height: 100vmin;
-        min-width: 100vmax;
+        min-height: 100vh;
+        min-width: 100vw;
         border-radius: 10%;
         box-sizing: border-box;
         overflow-x: hidden;
 
         .titleScreen
         {
-            height: 100vmin;
+            height: 100vh;
             width: 100%;
             background-color: $color-light-base;
             color:$color-black;
@@ -160,7 +160,7 @@ html
 
         .gameContainer
         {
-            height:80vmin;
+            height:80vh;
             box-sizing: border-box;
             background-color: $color-light-base;
             display: flex;
@@ -180,7 +180,7 @@ html
                 input, select
                 {
                     font-size:2rem;
-                    height:7vmin;
+                    height:7vh;
                     width:25rem;
                     background-color: $color-light-base;
                     box-sizing: border-box;
@@ -191,7 +191,7 @@ html
                 }
                 img
                 {
-                    height:15vmin;
+                    height:15vh;
                     animation: float 2s ease-in-out infinite;
                 }
             }
@@ -208,7 +208,7 @@ html
                 button
                 {
                     font-size:2rem;
-                    height:7vmin;
+                    height:7vh;
                     width:25rem;
                     background-color: $color-light-base;
                     box-sizing: border-box;

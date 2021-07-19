@@ -66,24 +66,24 @@
 
 @-webkit-keyframes shrinkUp {
   from {
-    height: 100vmin;
+    height: 100vh;
   }
   to {
-    height: 20vmin;
+    height: 20vh;
   }
 }
 
 @keyframes shrinkUp {
   from {
-    height: 100vmin;
+    height: 100vh;
   }
   to {
-    height: 20vmin;
+    height: 20vh;
   }
 }
 
 html {
-  font-size: 0.5vmax;
+  font-size: 0.5vw;
   font-family: Early Gameboy;
 }
 
@@ -91,8 +91,8 @@ html body {
   overflow-y: hidden;
   padding: 0;
   margin: 0;
-  min-height: 100vmin;
-  min-width: 100vmax;
+  min-height: 100vh;
+  min-width: 100vw;
   border-radius: 10%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -100,7 +100,7 @@ html body {
 }
 
 html body .titleScreen {
-  height: 100vmin;
+  height: 100vh;
   width: 100%;
   background-color: #949425;
   color: #24321C;
@@ -179,7 +179,7 @@ html body .titleScreen .subhead.fade-out {
 }
 
 html body .gameContainer {
-  height: 80vmin;
+  height: 80vh;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   background-color: #949425;
@@ -213,7 +213,7 @@ html body .gameContainer .playerFields {
 
 html body .gameContainer .playerFields input, html body .gameContainer .playerFields select {
   font-size: 2rem;
-  height: 7vmin;
+  height: 7vh;
   width: 25rem;
   background-color: #949425;
   -webkit-box-sizing: border-box;
@@ -228,7 +228,7 @@ html body .gameContainer .playerFields input:focus, html body .gameContainer .pl
 }
 
 html body .gameContainer .playerFields img {
-  height: 15vmin;
+  height: 15vh;
   -webkit-animation: float 2s ease-in-out infinite;
           animation: float 2s ease-in-out infinite;
 }
@@ -251,7 +251,7 @@ html body .gameContainer .gameButtons {
 
 html body .gameContainer .gameButtons button {
   font-size: 2rem;
-  height: 7vmin;
+  height: 7vh;
   width: 25rem;
   background-color: #949425;
   -webkit-box-sizing: border-box;
