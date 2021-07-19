@@ -1,0 +1,288 @@
+@font-face {
+  font-family: 'Early GameBoy';
+  src: url("./fonts/Early-GameBoy.eot");
+  src: url("./fonts/Early-GameBoy.eot?#iefix") format("embedded-opentype"), url("./fonts/Early-GameBoy.woff2") format("woff2"), url("./fonts/Early-GameBoy.woff") format("woff"), url("./fonts/Early-GameBoy.ttf") format("truetype"), url("./fonts/Early-GameBoy.svg#Early-GameBoy") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nu Hanafudaya';
+  src: url("./fonts/NuHanafudaya-Regular.eot");
+  src: url("./fonts/NuHanafudaya-Regular.eot?#iefix") format("embedded-opentype"), url("./fonts/NuHanafudaya-Regular.woff2") format("woff2"), url("./fonts/NuHanafudaya-Regular.woff") format("woff"), url("./fonts/NuHanafudaya-Regular.ttf") format("truetype"), url("./fonts/NuHanafudaya-Regular.svg#NuHanafudaya-Regular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@-webkit-keyframes float {
+  0% {
+    -webkit-transform: translate(0rem);
+            transform: translate(0rem);
+  }
+  50% {
+    -webkit-transform: translatey(-1.5rem);
+            transform: translatey(-1.5rem);
+  }
+  100% {
+    -webkit-transform: translate(0rem);
+            transform: translate(0rem);
+  }
+}
+
+@keyframes float {
+  0% {
+    -webkit-transform: translate(0rem);
+            transform: translate(0rem);
+  }
+  50% {
+    -webkit-transform: translatey(-1.5rem);
+            transform: translatey(-1.5rem);
+  }
+  100% {
+    -webkit-transform: translate(0rem);
+            transform: translate(0rem);
+  }
+}
+
+@-webkit-keyframes shrink {
+  from {
+    font-size: 10rem;
+  }
+  to {
+    font-size: 7rem;
+  }
+}
+
+@keyframes shrink {
+  from {
+    font-size: 10rem;
+  }
+  to {
+    font-size: 7rem;
+  }
+}
+
+@-webkit-keyframes shrinkUp {
+  from {
+    height: 100vmin;
+  }
+  to {
+    height: 20vmin;
+  }
+}
+
+@keyframes shrinkUp {
+  from {
+    height: 100vmin;
+  }
+  to {
+    height: 20vmin;
+  }
+}
+
+html {
+  font-size: 0.5vmax;
+  font-family: Early Gameboy;
+}
+
+html body {
+  overflow-y: hidden;
+  padding: 0;
+  margin: 0;
+  min-height: 100vmin;
+  min-width: 100vmax;
+  border-radius: 10%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+html body .titleScreen {
+  height: 100vmin;
+  width: 100%;
+  background-color: #949425;
+  color: #24321C;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 10rem solid transparent;
+  border-image-source: url("./border.png");
+  border-image-slice: 40%;
+}
+
+html body .titleScreen.shrinkUp {
+  -webkit-animation-name: shrinkUp;
+          animation-name: shrinkUp;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+}
+
+html body .titleScreen .head {
+  font-size: 10em;
+  color: #252622;
+}
+
+html body .titleScreen .head.shrink {
+  -webkit-animation-name: shrink;
+          animation-name: shrink;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+}
+
+html body .titleScreen .head .letter {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  color: #24321C;
+  text-shadow: 0.5rem 0.5rem 1.5rem #3C3C0E;
+}
+
+html body .titleScreen .head .letter:nth-of-type(odd) {
+  -webkit-animation: float 4s ease-in-out infinite;
+          animation: float 4s ease-in-out infinite;
+}
+
+html body .titleScreen .head .letter:nth-of-type(even) {
+  -webkit-animation: float 2.5s ease-in-out infinite;
+          animation: float 2.5s ease-in-out infinite;
+}
+
+html body .titleScreen .subhead {
+  font-size: 3em;
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+}
+
+html body .titleScreen .subhead.fade-out {
+  opacity: 0;
+}
+
+html body .gameContainer {
+  height: 80vmin;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-color: #949425;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+html body .gameContainer .playerFields {
+  height: 80%;
+  width: 100rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 10rem solid transparent;
+  border-image-source: url("./border.png");
+  border-image-slice: 45%;
+}
+
+html body .gameContainer .playerFields input, html body .gameContainer .playerFields select {
+  font-size: 2rem;
+  height: 7vmin;
+  width: 25rem;
+  background-color: #949425;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 2rem solid transparent;
+  border-image-source: url("./border.png");
+  border-image-slice: 30%;
+}
+
+html body .gameContainer .playerFields input:focus, html body .gameContainer .playerFields select:focus {
+  outline: none;
+}
+
+html body .gameContainer .playerFields img {
+  height: 15vmin;
+  -webkit-animation: float 2s ease-in-out infinite;
+          animation: float 2s ease-in-out infinite;
+}
+
+html body .gameContainer .gameButtons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  border: 10rem solid transparent;
+  border-image-source: url("./border.png");
+  border-image-slice: 20%;
+}
+
+html body .gameContainer .gameButtons button {
+  font-size: 2rem;
+  height: 7vmin;
+  width: 25rem;
+  background-color: #949425;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 2rem solid transparent;
+  border-image-source: url("./border.png");
+  border-image-slice: 45%;
+}
+
+html body .gameContainer .gameButtons button:focus {
+  outline: none;
+}
+
+html body .authorLink {
+  text-decoration: none;
+  color: inherit;
+  position: fixed;
+  bottom: 3.5rem;
+  right: 2rem;
+  font-size: 2rem;
+  font-family: Nu Hanafudaya;
+  -webkit-transition: padding-bottom 0.2s ease-in-out, padding-right 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+  transition: padding-bottom 0.2s ease-in-out, padding-right 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, padding-bottom 0.2s ease-in-out, padding-right 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, padding-bottom 0.2s ease-in-out, padding-right 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+}
+
+html body .authorLink:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  padding-bottom: 0.3rem;
+  padding-right: 1rem;
+}
+/*# sourceMappingURL=styles.css.map */
