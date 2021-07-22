@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', ()=>{
     setTimeout(function () {
-        let viewheight = $(window).height();
-        let viewwidth = $(window).width();
+        let viewheight = `${window.innerHeight}`;
+        let viewwidth = `${window.innerWidth}`;
         let viewport = document.querySelector("meta[name=viewport]");
         viewport.setAttribute("content", "height=" + viewheight + "px, width=" + viewwidth + "px, initial-scale=1.0");
     }, 100);
@@ -110,7 +110,6 @@ let playerCreation = (reload)=>
     const checkNameInput = ()=>{
         let inputs = document.querySelectorAll('.name')
         let result = Array.from(inputs).every(input=>input.value!="")
-        console.log(inputs)
         if (result==true)
         {
             document.querySelector('.enter-btn').disabled = false
