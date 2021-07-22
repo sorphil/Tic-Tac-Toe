@@ -255,8 +255,10 @@ const runGame = (players)=>
             else {return}
         }
         const _addTileEventstListeners = function(){
-            if(game.currentPlayer.type=="AI"){return}
+            console.log(game.over)
+            if(game.currentPlayer.type=="AI"&&game.over==false){return}
             let tilePosition = `${this.dataset.positionY}-${this.dataset.positionX}`
+    
             game.markTiles(this, tilePosition)
         }
 
@@ -314,7 +316,7 @@ const runGame = (players)=>
     })()
 
     const game = (()=>{
-        let _over = false
+        let over = false
         let _reset = false
         let _players = players
         let winner = ""
@@ -329,33 +331,16 @@ const runGame = (players)=>
             
             if(game.currentPlayer.id == _players[0].id||initial)
             {
-                //if portrait
-                if(window.innerHeight > window.innerWidth)
-                {
-                    playerOneImg.style.cssText = "transform:scale(1.2)"
-                    playerTwoImg.style.cssText = "transform:scale(1)"
-                }
-                else
-                {
-                    playerOneImg.style.cssText = "transform:translateY(-3rem)"
-                    playerTwoImg.style.cssText = "position:static;"
-                }
+
+                playerOneImg.style.cssText = "transform:scale(1.2)"
+                playerTwoImg.style.cssText = "position:static;"
                 
             }
             else
             {
-                if(window.innerHeight > window.innerWidth)
-                {
-                    playerTwoImg.style.cssText = "transform:scale(1.2)"
-                    playerOneImg.style.cssText = "transform:scale(1)"
-                }
-                else
-                {
+
                     playerOneImg.style.cssText = "position:static;"
-                playerTwoImg.style.cssText = "transform:translateY(-3rem)"
-                }
-                
-                
+                    playerTwoImg.style.cssText = "transform:scale(1.2)"
             }
 
         }
@@ -383,7 +368,7 @@ const runGame = (players)=>
         {
             _watchBoard()
             this.currentPlayer = (this.currentPlayer===_players[0]?_players[1]:_players[0])
-            if(_over==false)
+            if(game.over==false)
             {
                 _displayCurrentTurn()
                 if (game.currentPlayer.type=="AI")
@@ -395,8 +380,8 @@ const runGame = (players)=>
         }
     
         const markTiles = function(tile, tilePosition){
-            // Check if game is over, if it is, stop from changing tiles
-            if(_over==true)
+            // Check if game is game.over, if it is, stop from changing tiles
+            if(game.over==true)
             {
                 if(game.winner=="TIE")
                 {
@@ -456,12 +441,12 @@ const runGame = (players)=>
         const _highlightTilesPlayer = function(){
                 document.querySelectorAll('.tile').forEach((tile)=>{
                     tile.addEventListener('mouseenter', function(){
-                        if(tile.classList.contains("marked")||game.currentPlayer.type=="AI"||_over==true){return}
+                        if(tile.classList.contains("marked")||game.currentPlayer.type=="AI"||game.over==true){return}
                         else
                         this.innerHTML = `<h2 style="opacity:40%;">${game.currentPlayer.marker}</h2>`
                     })
                     tile.addEventListener('mouseleave', function(){
-                        if(tile.classList.contains("marked")||game.currentPlayer.type=="AI"||_over==true){return}
+                        if(tile.classList.contains("marked")||game.currentPlayer.type=="AI"||game.over==true){return}
                         else
                         this.innerHTML = ""
                     })
@@ -491,7 +476,7 @@ const runGame = (players)=>
                 }
                 const _handleAIReset = (_handlePlayerReset)=>{
                     _reset = true
-                    _over = false;
+                    game.over = false;
                     game.winner = ""
                     _handlePlayerReset()
                 }
@@ -533,7 +518,7 @@ const runGame = (players)=>
                 {
                     if(!boardInstance&&game.currentPlayer==_players[0])
                     {
-                        _over = true
+                        game.over = true
                         game.score.playerOne+=1
                         alert(`${_players[0].name} Won`)
                         game.winner = `${_players[0].name}`
@@ -547,7 +532,7 @@ const runGame = (players)=>
                 {
                     if(!boardInstance&&game.currentPlayer==_players[1])
                     {
-                        _over = true
+                        game.over = true
                         game.score.playerTwo+=1
                         game.winner = `${_players[1].name}`
                         alert(`${_players[1].name} Won`)
@@ -560,7 +545,7 @@ const runGame = (players)=>
                 else if(gameBoard.board.markers.every((tile)=>tile!=""))
                 {   if(!boardInstance)
                     {
-                        _over = true
+                        game.over = true
                         game.score.tie+=1
                         game.winner = "TIE"
                         document.querySelector('#playerOneFields .playerIcon img:not([style*="display: none;"])').style.cssText ="position:static;"
@@ -656,7 +641,7 @@ const runGame = (players)=>
         
             let _randomPick = ()=>{
                 let move = Math.floor(Math.random()*(9));
-                while(gameBoard.board.markers[move]!=""&&_over==false)
+                while(gameBoard.board.markers[move]!=""&&game.over==false)
                 {
                     move = Math.floor(Math.random()*(9));
                 }
@@ -704,7 +689,7 @@ const runGame = (players)=>
         waitBoardAnimation(()=>_displayCurrentTurn(true))
         waitBoardAnimation(()=>_displayScore(true))
 
-        return {currentPlayer, currentPlayerChange, markTiles, score, winner}
+        return {currentPlayer, currentPlayerChange, markTiles, score, winner,over}
     })()
     
     //if the first player is AI, run the game by setting current player to the 2nd one, and running the change function
