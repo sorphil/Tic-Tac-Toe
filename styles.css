@@ -1,3 +1,4 @@
+/* font Early GameBoy by Jimmy Campbell */
 @font-face {
   font-family: 'Early GameBoy';
   src: url("./resources/fonts/Early-GameBoy.eot");
@@ -6,7 +7,7 @@
   font-style: normal;
   font-display: swap;
 }
-
+/* font Nu Hanafudaya by Sayuri */
 @font-face {
   font-family: 'Nu Hanafudaya';
   src: url("./resources/fonts/NuHanafudaya-Regular.eot");
