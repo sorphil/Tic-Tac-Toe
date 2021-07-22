@@ -29,6 +29,7 @@ let playerCreation = (reload)=>
     const enterBtn = document.querySelector('.enter-btn')
     const resetBtn = document.querySelector('.reset-btn')
     const backBtn = document.querySelector('.back-btn')
+    const authorLink = document.querySelector('.authorLink')
     
     if(reload==false)
     {
@@ -39,6 +40,7 @@ let playerCreation = (reload)=>
             titleScreen.classList.add('shrinkUp')
             head.addEventListener('animationend', ()=>{
                 head.style.cssText="font-size: 6rem"
+                authorLink.cssText = "font-size:0.5rem"
                 titleScreen.style.cssText="cursor: default; height:25%;"
                 gameContainer.style.display ="flex"
                 head.classList.remove('shrink')

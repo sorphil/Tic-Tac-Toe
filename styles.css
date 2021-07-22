@@ -249,27 +249,10 @@
 }
 
 .authorLink {
-  z-index: 9999;
-  text-decoration: none;
   color: inherit;
-  position: absolute;
-  margin-top: -30px;
-  margin-left: 5px;
-  width: 11rem;
-  height: 2.9rem;
+  text-decoration: none;
   font-size: 2rem;
   font-family: Nu Hanafudaya;
-  -webkit-transition: padding-bottom 0.2s ease-in-out, padding-right 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
-  transition: padding-bottom 0.2s ease-in-out, padding-right 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
-  transition: transform 0.2s ease-in-out, padding-bottom 0.2s ease-in-out, padding-right 0.2s ease-in-out;
-  transition: transform 0.2s ease-in-out, padding-bottom 0.2s ease-in-out, padding-right 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
-}
-
-.authorLink:hover {
-  -webkit-transform: scale(1.1);
-          transform: scale(1.1);
-  padding-bottom: 0.3rem;
-  padding-right: 1rem;
 }
 
 html, body {
@@ -396,17 +379,20 @@ button.reset-btn, button.back-btn {
   font-size: 3rem;
 }
 
-.letter {
+.head > * {
   display: inline-block;
+}
+
+.head > *.letter {
   text-shadow: 0.5rem 0.5rem 2rem #3C3C0E;
 }
 
-.letter:nth-of-type(odd) {
+.head > *:nth-of-type(odd) {
   -webkit-animation: float 4s ease-in-out infinite;
           animation: float 4s ease-in-out infinite;
 }
 
-.letter:nth-of-type(even) {
+.head > *:nth-of-type(even) {
   -webkit-animation: float 2.5s ease-in-out infinite;
           animation: float 2.5s ease-in-out infinite;
 }
