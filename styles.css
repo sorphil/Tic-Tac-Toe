@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'Early GameBoy';
-  src: url("./fonts/Early-GameBoy.eot");
-  src: url("./fonts/Early-GameBoy.eot?#iefix") format("embedded-opentype"), url("./fonts/Early-GameBoy.woff2") format("woff2"), url("./fonts/Early-GameBoy.woff") format("woff"), url("./fonts/Early-GameBoy.ttf") format("truetype"), url("./fonts/Early-GameBoy.svg#Early-GameBoy") format("svg");
+  src: url("./resources/fonts/Early-GameBoy.eot");
+  src: url("./resources/fonts/Early-GameBoy.eot?#iefix") format("embedded-opentype"), url("./resources/fonts/Early-GameBoy.woff2") format("woff2"), url("./resources/fonts/Early-GameBoy.woff") format("woff"), url("./resources/fonts/Early-GameBoy.ttf") format("truetype"), url("./resources/fonts/Early-GameBoy.svg#Early-GameBoy") format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -9,8 +9,8 @@
 
 @font-face {
   font-family: 'Nu Hanafudaya';
-  src: url("./fonts/NuHanafudaya-Regular.eot");
-  src: url("./fonts/NuHanafudaya-Regular.eot?#iefix") format("embedded-opentype"), url("./fonts/NuHanafudaya-Regular.woff2") format("woff2"), url("./fonts/NuHanafudaya-Regular.woff") format("woff"), url("./fonts/NuHanafudaya-Regular.ttf") format("truetype"), url("./fonts/NuHanafudaya-Regular.svg#NuHanafudaya-Regular") format("svg");
+  src: url("./resources/fonts/NuHanafudaya-Regular.eot");
+  src: url("./resources/fonts/NuHanafudaya-Regular.eot?#iefix") format("embedded-opentype"), url("./resources/fonts/NuHanafudaya-Regular.woff2") format("woff2"), url("./resources/fonts/NuHanafudaya-Regular.woff") format("woff"), url("./resources/fonts/NuHanafudaya-Regular.ttf") format("truetype"), url("./resources/fonts/NuHanafudaya-Regular.svg#NuHanafudaya-Regular") format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -48,229 +48,215 @@
 
 @-webkit-keyframes shrink {
   from {
-    font-size: 10rem;
+    font-size: 9.5rem;
   }
   to {
-    font-size: 7rem;
+    font-size: 6rem;
   }
 }
 
 @keyframes shrink {
   from {
-    font-size: 10rem;
+    font-size: 9.5rem;
   }
   to {
-    font-size: 7rem;
+    font-size: 6rem;
   }
 }
 
 @-webkit-keyframes shrinkUp {
   from {
-    height: 100vh;
+    height: 100%;
   }
   to {
-    height: 20vh;
+    height: 25%;
   }
 }
 
 @keyframes shrinkUp {
   from {
-    height: 100vh;
+    height: 100%;
   }
   to {
-    height: 20vh;
+    height: 25%;
   }
 }
 
-html {
-  font-size: 0.5vw;
-  font-family: Early Gameboy;
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-html body {
-  overflow-y: hidden;
-  padding: 0;
-  margin: 0;
-  min-height: 100vh;
-  min-width: 100vw;
-  border-radius: 10%;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  overflow-x: hidden;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-html body .titleScreen {
-  height: 100vh;
-  width: 100%;
-  background-color: #949425;
-  color: #24321C;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  border: 10rem solid transparent;
-  border-image-source: url("./border.png");
-  border-image-slice: 40%;
+@-webkit-keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
-html body .titleScreen.shrinkUp {
-  -webkit-animation-name: shrinkUp;
-          animation-name: shrinkUp;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
-html body .titleScreen .head {
-  font-size: 10em;
-  color: #252622;
+@-webkit-keyframes openGame-left {
+  from {
+    width: 50%;
+    left: 0%;
+  }
+  to {
+    width: 33.333%;
+  }
 }
 
-html body .titleScreen .head.shrink {
-  -webkit-animation-name: shrink;
-          animation-name: shrink;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
+@keyframes openGame-left {
+  from {
+    width: 50%;
+    left: 0%;
+  }
+  to {
+    width: 33.333%;
+  }
 }
 
-html body .titleScreen .head .letter {
-  display: inline-block;
-  padding: 0;
-  margin: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  color: #24321C;
-  text-shadow: 0.5rem 0.5rem 1.5rem #3C3C0E;
+@-webkit-keyframes openGame-right {
+  from {
+    width: 50%;
+    left: 0%;
+  }
+  to {
+    width: 33.333%;
+    left: 33.333%;
+  }
 }
 
-html body .titleScreen .head .letter:nth-of-type(odd) {
-  -webkit-animation: float 4s ease-in-out infinite;
-          animation: float 4s ease-in-out infinite;
+@keyframes openGame-right {
+  from {
+    width: 50%;
+    left: 0%;
+  }
+  to {
+    width: 33.333%;
+    left: 33.333%;
+  }
 }
 
-html body .titleScreen .head .letter:nth-of-type(even) {
-  -webkit-animation: float 2.5s ease-in-out infinite;
-          animation: float 2.5s ease-in-out infinite;
+@-webkit-keyframes openGame-up {
+  from {
+    height: 50%;
+  }
+  to {
+    height: 30%;
+  }
 }
 
-html body .titleScreen .subhead {
-  font-size: 3em;
-  -webkit-transition: opacity 0.5s;
-  transition: opacity 0.5s;
+@keyframes openGame-up {
+  from {
+    height: 50%;
+  }
+  to {
+    height: 30%;
+  }
 }
 
-html body .titleScreen .subhead.fade-out {
-  opacity: 0;
+@-webkit-keyframes openGame-down {
+  from {
+    height: 50%;
+    top: 0%;
+  }
+  to {
+    height: 30%;
+    top: 40%;
+  }
 }
 
-html body .gameContainer {
-  height: 80vh;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  background-color: #949425;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+@keyframes openGame-down {
+  from {
+    height: 50%;
+    top: 0%;
+  }
+  to {
+    height: 30%;
+    top: 40%;
+  }
 }
 
-html body .gameContainer .playerFields {
-  height: 80%;
-  width: 100rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  border: 10rem solid transparent;
-  border-image-source: url("./border.png");
-  border-image-slice: 45%;
+.fadeIn {
+  -webkit-animation: fadeIn 0.3s ease-in-out;
+          animation: fadeIn 0.3s ease-in-out;
 }
 
-html body .gameContainer .playerFields input, html body .gameContainer .playerFields select {
-  font-size: 2rem;
-  height: 7vh;
-  width: 25rem;
-  background-color: #949425;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  border: 2rem solid transparent;
-  border-image-source: url("./border.png");
-  border-image-slice: 30%;
+.fadeOut {
+  -webkit-animation: fadeOut 0.3s ease-in-out;
+          animation: fadeOut 0.3s ease-in-out;
 }
 
-html body .gameContainer .playerFields input:focus, html body .gameContainer .playerFields select:focus {
-  outline: none;
+.shrinkUp {
+  -webkit-animation: shrinkUp 1s ease-in-out;
+          animation: shrinkUp 1s ease-in-out;
 }
 
-html body .gameContainer .playerFields img {
-  height: 15vh;
-  -webkit-animation: float 2s ease-in-out infinite;
-          animation: float 2s ease-in-out infinite;
+.shrink {
+  -webkit-animation: shrink 1s ease-in-out;
+          animation: shrink 1s ease-in-out;
 }
 
-html body .gameContainer .gameButtons {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  border: 10rem solid transparent;
-  border-image-source: url("./border.png");
-  border-image-slice: 20%;
+@media only screen and (orientation: landscape) {
+  .openGame.leftBlock {
+    -webkit-animation: openGame-left 1s ease-in-out;
+            animation: openGame-left 1s ease-in-out;
+    width: 33.333%;
+  }
+  .openGame.rightBlock {
+    -webkit-animation: openGame-right 1s ease-in-out;
+            animation: openGame-right 1s ease-in-out;
+    width: 33.333%;
+  }
 }
 
-html body .gameContainer .gameButtons button {
-  font-size: 2rem;
-  height: 7vh;
-  width: 25rem;
-  background-color: #949425;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  border: 2rem solid transparent;
-  border-image-source: url("./border.png");
-  border-image-slice: 45%;
+@media only screen and (orientation: portrait) {
+  .openGame.leftBlock {
+    -webkit-animation: openGame-up 1s ease-in-out;
+            animation: openGame-up 1s ease-in-out;
+    width: 100%;
+    height: 30%;
+  }
+  .openGame.rightBlock {
+    -webkit-animation: openGame-down 1s ease-in-out;
+            animation: openGame-down 1s ease-in-out;
+    width: 100%;
+    height: 30%;
+  }
 }
 
-html body .gameContainer .gameButtons button:focus {
-  outline: none;
-}
-
-html body .authorLink {
+.authorLink {
+  z-index: 9999;
   text-decoration: none;
   color: inherit;
-  position: fixed;
-  bottom: 3.5rem;
-  right: 2rem;
+  position: absolute;
+  margin-top: -30px;
+  margin-left: 5px;
+  width: 11rem;
+  height: 2.9rem;
   font-size: 2rem;
   font-family: Nu Hanafudaya;
   -webkit-transition: padding-bottom 0.2s ease-in-out, padding-right 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
@@ -279,10 +265,332 @@ html body .authorLink {
   transition: transform 0.2s ease-in-out, padding-bottom 0.2s ease-in-out, padding-right 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
 }
 
-html body .authorLink:hover {
+.authorLink:hover {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
   padding-bottom: 0.3rem;
   padding-right: 1rem;
+}
+
+html, body {
+  font-size: 10px;
+  font-family: Early Gameboy;
+  min-height: 100vh;
+  min-width: 100vw;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+html, body, button, select, input, .letter {
+  padding: 0;
+  margin: 0;
+}
+
+html, body, .container, .titleScreen, .letter,
+.gameContainer, .top-row, .playerFields,
+.boardContainer, .boardContainer > div,
+button, input, select {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html, body, .titleScreen, .gameContainer,
+.top-row, .playerFields, .boardContainer > div,
+.gameButtons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+html, body, .titleScreen, .boardContainer > div {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+html, body, .titleScreen, .boardContainer > div, .playerFields, .gameButtons {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.titleScreen, .gameContainer, .playerFields {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.titleScreen, .playerFields, .boardContainer, .bottom-row {
+  border: 2rem solid transparent;
+  border-image-source: url("./resources/border.png");
+  border-image-slice: 15%;
+}
+
+input, select, button {
+  font-size: 2.2rem;
+  height: 7rem;
+  width: 25rem;
+  background-color: #7D810E;
+  border: 0.5rem solid #3C3C0E;
+}
+
+input:focus, select:focus, button:focus {
+  outline: none;
+  -webkit-box-shadow: 0 0 1rem #486032;
+          box-shadow: 0 0 1rem #486032;
+}
+
+img {
+  height: 14rem;
+  padding-bottom: 2rem;
+}
+
+.difficulty {
+  margin-bottom: 0.5rem;
+}
+
+button, input, select, .displayInfo {
+  text-align: center;
+}
+
+button:active {
+  background-color: #606A1E;
+}
+
+button:disabled {
+  background-color: #949425;
+  color: #24321C;
+}
+
+button.reset-btn, button.back-btn {
+  display: none;
+}
+
+.container {
+  height: 950px;
+  width: 1700px;
+  border: 8rem solid #24321C;
+  border-radius: 10%;
+  background-color: #949425;
+}
+
+.container > div {
+  background-color: #949425;
+}
+
+.titleScreen {
+  height: 100%;
+  width: 100%;
+  color: #24321C;
+  cursor: pointer;
+}
+
+.head {
+  font-size: 9.5rem;
+}
+
+.subhead {
+  font-size: 3rem;
+}
+
+.letter {
+  display: inline-block;
+  text-shadow: 0.5rem 0.5rem 2rem #3C3C0E;
+}
+
+.letter:nth-of-type(odd) {
+  -webkit-animation: float 4s ease-in-out infinite;
+          animation: float 4s ease-in-out infinite;
+}
+
+.letter:nth-of-type(even) {
+  -webkit-animation: float 2.5s ease-in-out infinite;
+          animation: float 2.5s ease-in-out infinite;
+}
+
+.gameContainer {
+  height: 75%;
+}
+
+.top-row {
+  height: 85%;
+}
+
+.playerFields {
+  width: 50%;
+}
+
+.leftBlock, .rightBlock {
+  position: relative;
+}
+
+.boardContainer {
+  width: 33.333%;
+  -ms-grid-columns: (33.33%)[3];
+      grid-template-columns: repeat(3, 33.33%);
+  -ms-grid-rows: (33.33%)[3];
+      grid-template-rows: repeat(3, 33.33%);
+}
+
+.boardContainer > div {
+  height: 100%;
+  font-size: 30px;
+  width: 100%;
+  opacity: 0;
+  border-collapse: collapse;
+  cursor: pointer;
+}
+
+.boardContainer > div:nth-child(-n+3) {
+  border-bottom: 0.5rem solid black;
+}
+
+.boardContainer > div:nth-child(3n+1) {
+  border-right: 0.5rem solid black;
+}
+
+.boardContainer > div:nth-child(3n) {
+  border-left: 0.5rem solid black;
+}
+
+.boardContainer > div:nth-child(n+7) {
+  border-top: 0.5rem solid black;
+}
+
+.tile h2 {
+  font-size: 4rem;
+}
+
+.bottom-row {
+  height: 15%;
+}
+
+.gameButtons {
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  height: 100%;
+}
+
+.displayInfo {
+  padding-bottom: 2rem;
+}
+
+.displayInfo h1 {
+  font-size: 3rem;
+  padding-bottom: 0.5rem;
+}
+
+.displayInfo h2 {
+  font-size: 2rem;
+  padding-bottom: 0.5rem;
+}
+
+.playerFields {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+@media only screen and (orientation: portrait) {
+  .top-row {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .playerFields {
+    height: 100%;
+    width: 100%;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .boardContainer {
+    height: 40%;
+    width: 50%;
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+    -ms-grid-column-align: center;
+        justify-self: center;
+  }
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width: 481px) and (max-width: 767px) and (orientation: landscape) {
+  body, html {
+    font-size: 4px;
+  }
+  body .container, html .container {
+    height: 360px;
+    width: 760px;
+  }
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (min-width: 320px) and (max-width: 480px) and (orientation: portrait) {
+  body, html {
+    font-size: 2.8px;
+  }
+  body .container, html .container {
+    height: 650px;
+    width: 360px;
+  }
+}
+
+/* iPads (landscape) ----------- */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  body, html {
+    font-size: 6px;
+  }
+  body .container, html .container {
+    height: 760px;
+    width: 1050px;
+  }
+  body .playerFields, html .playerFields {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
+/* iPads (portrait) ----------- */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  body, html {
+    font-size: 4.5px;
+  }
+  body .container, html .container {
+    height: 1020px;
+    width: 760px;
+  }
+  body .playerFields, html .playerFields {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  body .boardContainer, html .boardContainer {
+    height: 40%;
+    width: 40%;
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+    -ms-grid-column-align: center;
+        justify-self: center;
+  }
+}
+
+/* Device = Laptops, Desktops ----------- */
+@media (min-width: 1025px) and (max-width: 1280px) {
+  html, body {
+    font-size: 6px;
+  }
+  .container {
+    height: 580px;
+    width: 1020px;
+  }
 }
 /*# sourceMappingURL=styles.css.map */

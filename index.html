@@ -7,10 +7,11 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="./styles.css">
-        <script src="./main_test.js"></script>
+        <script src="./main.js"></script>
     </head>
     <body> 
-        
+        <div class ="container"> 
+            <!-- <a class ="authorLink" href ="https://github.com/sorphil">{sorphil®}</a> -->
             <div class = "titleScreen" >
                 <div class = "head">
                     <span class = "letter">T</span><span class = "letter">I</span><span class = "letter">C</span><span class = "letter">-</span><span class = "letter">T</span><span class = "letter">A</span><span class = "letter">C</span><span class = "letter">-</span><span class = "letter">T</span><span class = "letter">O</span><span class = "letter">E</span>
@@ -19,49 +20,66 @@
             </div>
 
             <div class = "gameContainer" style="display:none">
+                <div class ="top-row">
+                    <div class ="leftBlock playerFields" id = "playerOneFields">
+                        <div class ="playerIcon">
+                            <img src="./resources/humanIcon.png" class = "humanIcon" id = "playerOneHumanIcon">
+                            <img src="./resources/robotIcon.png"  class = "robotIcon" id = "playerOneRobotIcon">
+                        </div>
         
-                <div class ="leftBlock playerFields">
-                    <div class ="playerIcon">
-                        <img src="./HumanIcon.png" class = "humanIcon" id = "playerOneHumanIcon">
-                        <img src="./RobotIcon.png"  class = "robotIcon" id = "playerOneRobotIcon">
+                        <input type = "text" class="playerOne name" id = "playerOneName" placeholder="Player 1 Name">
+                        <select class = "playerOne type" id = "playerOneType">
+                            <option value="Human">Human</option>
+                            <option value = "AI">AI</option>
+                        </select>
+                        <select class ="playerOne difficulty" id = "playerOneDifficulty">
+                            <option>Easy</option>
+                            <option>Normal</option>
+                            <option>Hard</option>
+                        </select>
+                        <div class = "displayInfo">
+                            <div class = "displayName"></div>
+                            <div class = "displayType"><span class = "displayDifficulty"></span></div>
+                            <div class = "displayScore"></div>
+                        </div>
                     </div>
-    
-                    <input type = "text" class="playerOne name" id = "playerOneName" placeholder="Player 1 Name">
-                    <select class = "playerOne type" id = "playerOneType">
-                        <option value="Human">Human</option>
-                        <option value = "AI">AI</option>
-                    </select>
-                    <select class ="playerOne difficulty" id = "playerOneDifficulty">
-                        <option>Easy</option>
-                        <option>Normal</option>
-                        <option>Hard</option>
-                    </select>
-                </div>
-                <div class = "rightBlock playerFields" id ="playerTwoFields">
-                    <div class ="playerIcon">
-                        <img src="./HumanIcon.png" class = "humanIcon"  id = "playerTwoHumanIcon">
-                        <img src="./RobotIcon.png"  class = "robotIcon" id = "playerTwoRobotIcon">
+                    <div class ="boardContainer" style="display: none;"></div>
+                    <div class = "rightBlock playerFields" id ="playerTwoFields">
+                        <div class ="playerIcon">
+                            <img src="./resources/humanIcon(1).png" class = "humanIcon"  id = "playerTwoHumanIcon">
+                            <img src="./resources/robotIcon(1).png"  class = "robotIcon" id = "playerTwoRobotIcon">
+                        </div>
+                        <input type = "text" class="playerTwo name" id = "playerTwoName" placeholder="Player 2 Name">
+                        <select class = "playerTwo type" id = "playerTwoType">
+                            <option>Human</option>
+                            <option>AI</option>
+                        </select>
+                        <select class ="playerTwo difficulty" id = "playerTwoDifficulty">
+                            <option>Easy</option>
+                            <option>Normal</option>
+                            <option>Hard</option>
+                        </select>
+                        <div class = "displayInfo">
+                            <div class = "displayName"></div>
+                            <div class = "displayType"><span class = "displayDifficulty"></span></div>
+                            <div class = "displayScore"></div>
+                        </div>
+                       
                     </div>
-                    <input type = "text" class="playerTwo name" id = "playerTwoName" placeholder="Player 2 Name">
-                    <select class = "playerTwo type" id = "playerTwoType">
-                        <option>Human</option>
-                        <option>AI</option>
-                    </select>
-                    <select class ="playerTwo difficulty" id = "playerTwoDifficulty">
-                        <option>Easy</option>
-                        <option>Normal</option>
-                        <option>Hard</option>
-                    </select>
                 </div>
-                <!-- <div class ="gameButtons">
-                    <button class = "enter-btn">Enter</button>
-                    <button class = "reset-btn">Reset</button>
-                    <button class = "back-btn">Back</button>
-                </div> -->
+
+                <div class ="bottom-row">
+                    <div class ="gameButtons">
+                        <button class = "enter-btn">Enter</button>
+                        <button class = "reset-btn">Reset</button>
+                        <button class = "back-btn">Back</button>
+                    </div>
+                </div>
             </div>
+        </div>
 
         </div>
-        <a class ="authorLink" href ="https://github.com/sorphil">{by sorphil ®}</a>
+
          <!--
         <div class = "playerCreation" style="display: none;">
             <div class = "fields">
