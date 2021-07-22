@@ -1,4 +1,3 @@
-/* font Early GameBoy by Jimmy Campbell */
 @font-face {
   font-family: 'Early GameBoy';
   src: url("./resources/fonts/Early-GameBoy.eot");
@@ -7,7 +6,7 @@
   font-style: normal;
   font-display: swap;
 }
-/* font Nu Hanafudaya by Sayuri */
+
 @font-face {
   font-family: 'Nu Hanafudaya';
   src: url("./resources/fonts/NuHanafudaya-Regular.eot");
@@ -521,7 +520,7 @@ button.reset-btn, button.back-btn {
 /* Smartphones (portrait) ----------- */
 @media only screen and (min-width: 320px) and (max-width: 480px) and (orientation: portrait) {
   body, html {
-    font-size: 2.8px;
+    font-size: 2.5px;
   }
   body .container, html .container {
     height: 650px;
