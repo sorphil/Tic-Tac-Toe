@@ -246,7 +246,7 @@ const runGame = (players)=>
         }
   
         const _goBack = ()=>{
-            let back = confirm("Go back to character select?")
+            let back = confirm("Go back to character creation?")
             if(back==true)
             {
                 sessionStorage.setItem("playerCreationReload", "true");
@@ -332,7 +332,7 @@ const runGame = (players)=>
                 //if portrait
                 if(window.innerHeight > window.innerWidth)
                 {
-                    playerOneImg.style.cssText = "transform:scale(1.15)"
+                    playerOneImg.style.cssText = "transform:scale(1.2)"
                     playerTwoImg.style.cssText = "transform:scale(1)"
                 }
                 else
@@ -346,7 +346,7 @@ const runGame = (players)=>
             {
                 if(window.innerHeight > window.innerWidth)
                 {
-                    playerTwoImg.style.cssText = "transform:scale(1.15)"
+                    playerTwoImg.style.cssText = "transform:scale(1.2)"
                     playerOneImg.style.cssText = "transform:scale(1)"
                 }
                 else
