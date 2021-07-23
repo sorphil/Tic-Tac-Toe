@@ -233,26 +233,17 @@ const runGame = (players)=>
         let reset;
 
         const _resetBoard = ()=> {
-            gameBoard.reset = confirm("Reset game?")
-            if (gameBoard.reset)
-            {
+        
                 gameBoard.board.markers = []
                 gameBoard.board.positions = []
                 document.querySelector('.boardContainer').innerHTML = ""
                 _generateBoard()
                 _generateHTMLBoard()
-            }
-            else {return}
         }
   
         const _goBack = ()=>{
-            let back = confirm("Go back to character creation?")
-            if(back==true)
-            {
                 sessionStorage.setItem("playerCreationReload", "true");
                 document.location.reload();
-            }
-            else {return}
         }
         const _addTileEventstListeners = function(){
             console.log(game.over)
@@ -481,10 +472,7 @@ const runGame = (players)=>
                     _handlePlayerReset()
                 }
 
-                if(gameBoard.reset==true)
-                {  
-                    _handleAIReset(_handlePlayerReset)
-                }
+                _handleAIReset(_handlePlayerReset)
            
             })
         }
@@ -580,7 +568,7 @@ const runGame = (players)=>
             let _minimaxPick = ()=>{
     
                 let _minimax = (boardInstance, isMaximizing, depth)=>{
-                    if(depth>=10){return 0}
+                    if(depth>=13){return 0}
                     let result = _watchBoard(boardInstance)
                     if(result=="P2")    {return isMaximizing? -1:1}
                     else if(result=="P1") {return isMaximizing? -1:1}
@@ -661,14 +649,14 @@ const runGame = (players)=>
             // For "Easy" difficulty, perform a randomPick with a 70% chance, and a minimax pick with a 30% chance
             if(game.currentPlayer.type=="AI" && game.currentPlayer.difficulty=="Easy")
             {
-                if(chance<70) {index = _operationsAI("random")}
+                if(chance<30) {index = _operationsAI("random")}
                 else {index = _operationsAI("minimax")}
             }
     
             // For "Normal" difficulty, difficulty, perform a randomPick with a 20% chance, and a minimax pick with a 80% chance
             if(game.currentPlayer.type=="AI" && game.currentPlayer.difficulty=="Normal")
             {
-                if(chance<25)  {index = _operationsAI("random")}
+                if(chance<15)  {index = _operationsAI("random")}
                 else {index = _operationsAI("minimax")}
             }
     
