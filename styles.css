@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'Early GameBoy';
-  src: url("./resources/fonts/Early-GameBoy.eot");
-  src: url("./resources/fonts/Early-GameBoy.eot?#iefix") format("embedded-opentype"), url("./resources/fonts/Early-GameBoy.woff2") format("woff2"), url("./resources/fonts/Early-GameBoy.woff") format("woff"), url("./resources/fonts/Early-GameBoy.ttf") format("truetype"), url("./resources/fonts/Early-GameBoy.svg#Early-GameBoy") format("svg");
+  src: url("./assets/fonts/Early-GameBoy.eot");
+  src: url("./assets/fonts/Early-GameBoy.eot?#iefix") format("embedded-opentype"), url("./assets/fonts/Early-GameBoy.woff2") format("woff2"), url("./assets/fonts/Early-GameBoy.woff") format("woff"), url("./assets/fonts/Early-GameBoy.ttf") format("truetype"), url("./assets/fonts/Early-GameBoy.svg#Early-GameBoy") format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -9,8 +9,8 @@
 
 @font-face {
   font-family: 'Nu Hanafudaya';
-  src: url("./resources/fonts/NuHanafudaya-Regular.eot");
-  src: url("./resources/fonts/NuHanafudaya-Regular.eot?#iefix") format("embedded-opentype"), url("./resources/fonts/NuHanafudaya-Regular.woff2") format("woff2"), url("./resources/fonts/NuHanafudaya-Regular.woff") format("woff"), url("./resources/fonts/NuHanafudaya-Regular.ttf") format("truetype"), url("./resources/fonts/NuHanafudaya-Regular.svg#NuHanafudaya-Regular") format("svg");
+  src: url("./assets/fonts/NuHanafudaya-Regular.eot");
+  src: url("./assets/fonts/NuHanafudaya-Regular.eot?#iefix") format("embedded-opentype"), url("./assets/fonts/NuHanafudaya-Regular.woff2") format("woff2"), url("./assets/fonts/NuHanafudaya-Regular.woff") format("woff"), url("./assets/fonts/NuHanafudaya-Regular.ttf") format("truetype"), url("./assets/fonts/NuHanafudaya-Regular.svg#NuHanafudaya-Regular") format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -308,7 +308,7 @@ html, body, .titleScreen, .boardContainer > div, .playerFields, .gameButtons {
 
 .titleScreen, .playerFields, .boardContainer, .bottom-row {
   border: 2rem solid transparent;
-  border-image-source: url("./resources/border.png");
+  border-image-source: url("./assets/images/border.png");
   border-image-slice: 15%;
 }
 
