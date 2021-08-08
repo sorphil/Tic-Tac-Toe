@@ -222,27 +222,27 @@
 
 @media only screen and (orientation: landscape) {
   .openGame.leftBlock {
-    -webkit-animation: openGame-left 1s ease-in-out;
-            animation: openGame-left 1s ease-in-out;
+    -webkit-animation: openGame-left 0.8s ease-in-out;
+            animation: openGame-left 0.8s ease-in-out;
     width: 33.333%;
   }
   .openGame.rightBlock {
-    -webkit-animation: openGame-right 1s ease-in-out;
-            animation: openGame-right 1s ease-in-out;
+    -webkit-animation: openGame-right 0.8s ease-in-out;
+            animation: openGame-right 0.8s ease-in-out;
     width: 33.333%;
   }
 }
 
 @media only screen and (orientation: portrait) {
   .openGame.leftBlock {
-    -webkit-animation: openGame-up 1s ease-in-out;
-            animation: openGame-up 1s ease-in-out;
+    -webkit-animation: openGame-up 0.8s ease-in-out;
+            animation: openGame-up 0.8s ease-in-out;
     width: 100%;
     height: 30%;
   }
   .openGame.rightBlock {
-    -webkit-animation: openGame-down 1s ease-in-out;
-            animation: openGame-down 1s ease-in-out;
+    -webkit-animation: openGame-down 0.8s ease-in-out;
+            animation: openGame-down 0.8s ease-in-out;
     width: 100%;
     height: 30%;
   }
@@ -313,7 +313,8 @@ html, body, .titleScreen, .boardContainer > div, .playerFields, .gameButtons {
 }
 
 input, select, button {
-  font-size: 2.2rem;
+  font-family: 'Early Gameboy';
+  font-size: 2rem;
   height: 7rem;
   width: 25rem;
   background-color: #7D810E;
