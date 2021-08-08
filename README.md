@@ -3,7 +3,7 @@
 
 ### Live Demo
 ![Tic-Tac-Toe Gif](https://media.giphy.com/media/eKt7FRqcsgqSlnNXH1/giphy.gif)  
-[Tic-Tac-Toe](https://sorphil.github.io/Tic-Tac-Toe/)   
+[Tic-Tac-Toe 🎮](https://sorphil.github.io/Tic-Tac-Toe/)   
 
 ### About
 Tic-Tac-Toe with AI implementing the minimax algorithm; features varying degrees of difficulty:  
