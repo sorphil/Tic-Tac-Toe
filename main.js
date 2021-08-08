@@ -646,14 +646,14 @@ const runGame = (players)=>
             let tile = ""
             let index = 0
             let chance = Math.random() * 100
-            // For "Easy" difficulty, perform a randomPick with a 70% chance, and a minimax pick with a 30% chance
+            // For "Easy" difficulty, perform a randomPick with a 30% chance, and a minimax pick with a 30% chance
             if(game.currentPlayer.type=="AI" && game.currentPlayer.difficulty=="Easy")
             {
                 if(chance<30) {index = _operationsAI("random")}
                 else {index = _operationsAI("minimax")}
             }
     
-            // For "Normal" difficulty, difficulty, perform a randomPick with a 20% chance, and a minimax pick with a 80% chance
+            // For "Normal" difficulty, difficulty, perform a randomPick with a 15% chance, and a minimax pick with a 80% chance
             if(game.currentPlayer.type=="AI" && game.currentPlayer.difficulty=="Normal")
             {
                 if(chance<15)  {index = _operationsAI("random")}
