@@ -314,7 +314,7 @@ html, body, .titleScreen, .boardContainer > div, .playerFields, .gameButtons {
 
 input, select, button {
   font-family: 'Early Gameboy';
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   height: 7rem;
   width: 25rem;
   background-color: #7D810E;
